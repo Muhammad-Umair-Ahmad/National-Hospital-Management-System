@@ -1,0 +1,182 @@
+/* ---------------- CONTAINER ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+.login-page {
+  position: relative; /* for animated background elements */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  gap: 1.5rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+}
+
+/* ---------------- STATIC LOGO ---------------- */
+.login-logo {
+  height: 200px;
+  margin-bottom: 1rem;
+  z-index: 10; /* stays above animated elements */
+}
+
+/* ---------------- HEADING WITH STATIC LINES ---------------- */
+.login-heading {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #008252; /* consistent green */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 1rem; /* space between text and lines */
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.login-heading::before,
+.login-heading::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background-color: #008252; /* same green as heading */
+  border-radius: 1px; /* optional rounded edges */
+  /* static lines, no animation */
+}
+
+/* ---------------- BUTTONS ---------------- */
+.login-options {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 10;
+}
+
+.login-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  border: 2px solid #008252;
+  background-color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* hover and active effects */
+.login-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  border-color: #006b40;
+}
+
+.login-btn:active {
+  background-color: #008252;
+  color: #fff;
+  transform: translateY(-1px) scale(1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn:active .btn-label,
+.login-btn:active .btn-icon {
+  filter: brightness(0) invert(1);
+}
+
+.login-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 130, 82, 0.3);
+}
+
+.btn-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0.5rem;
+  transition: filter 0.2s;
+}
+
+.btn-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2c2c2c;
+  transition: color 0.2s;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 900px) {
+  .login-btn {
+    width: 120px;
+    height: 120px;
+  }
+  .btn-icon {
+    width: 50px;
+    height: 50px;
+  }
+  .btn-label {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-options {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .login-btn {
+    width: 100px;
+    height: 100px;
+  }
+  .btn-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .btn-label {
+    font-size: 0.85rem;
+  }
+}
+
+/* ---------------- BACKGROUND ELEMENTS (subtle movement) ---------------- */
+.login-page::before,
+.login-page::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 130, 82, 0.05); /* more diffused */
+  z-index: 1;
+  filter: blur(40px); /* soft diffusion */
+  animation: float-move 7s linear infinite;
+}
+
+/* top-left floating circle */
+.login-page::before {
+  width: 700px;
+  height: 700px;
+  top: -250px;
+  left: -300px;
+}
+
+/* bottom-right floating circle */
+.login-page::after {
+  width: 550px;
+  height: 550px;
+  bottom: -200px;
+  right: -200px;
+  animation-duration: 5s;
+}
+
+/* floating animation */
+@keyframes float-move {
+  0%   { transform: translateY(0px)  translateX(0px)  rotate(0deg);  }
+  50%  { transform: translateY(20px) translateX(10px) rotate(45deg); }
+  100% { transform: translateY(0px)  translateX(0px)  rotate(0deg);  }
+}
